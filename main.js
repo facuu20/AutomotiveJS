@@ -98,7 +98,8 @@ function marcaM() {
     })
 }
 
-function monto() {
+
+/*function monto() {
     let montoIngresado = prompt('Ingrese el monto que quiere gastar')
     lista.textContent = "";
     arrayAutos.map(auto => {
@@ -112,10 +113,21 @@ function monto() {
 
     })
 
+}//*/
+
+function monto() {
+    lista.textContent="";
+    let dinero = prompt('Ingrese monto a gastar ')
+    let listaDinero = arrayAutos.filter(precio => precio.precio <= dinero)
+    listaDinero.forEach(auto => {
+         listaDinero= document.createElement("li")
+        listaDinero.textContent = 'El vehiculo marca ' + auto.marca + ' modelo ' + auto.modelo + ' Año ' + auto.año + ' tiene un precio de ' + auto.precio + ' USD ';
+      console.log(listaDinero)
+      lista.appendChild(listaDinero)
+    });
+
+
 }
-
-
-
 
 
 
