@@ -1,132 +1,110 @@
-let arrayAutos = []
+/*let listaAutos = [
+    {
+        marca: 'hyundai',
+        modelo: 'hb20',
+        año: 2024,
+        img: './carpetaAutos/m5.jpg',
+        id: 0
+    },
+    
+    {
+        marca: 'audi',
+        modelo: 'a4',
+        año: 2005,
+        img: './carpetaAutos/a4.jpg',
+        id: 1
 
-console.log(arrayAutos)
-
-function Auto(m, mo, a, p) {
-    this.marca = m;
-    this.modelo = mo;
-    this.año = a;
-    this.precio = p;
+    },
+    {
+        marca: 'opel',
+        modelo: 'corza',
+        año: 2000,
+        img: './carpetaAutos/supra.jpg',
+        id: 2
+    }
+]
+*/
+function descargarLocalStorage(lista) {
+    let listaAutosString = localStorage.getItem(lista)
+    let listaAutos = JSON.parse(listaAutosString)
+    return listaAutos
 
 }
-const auto1 = new Auto('Audi', 'A4', 2005, 20000);
-const auto2 = new Auto('Audi', 'R8', 2007, 200000);
-const auto3 = new Auto('Audi', 'RS6', 2022, 230000);
-const auto4 = new Auto('Porsche', 'GT3RS', 2020, 310000);
-const auto5 = new Auto('Porsche', 'Panamera', 2005, 60000);
-const auto6 = new Auto('BMW', 'M5', 2005, 50000);
-const auto7 = new Auto('BMW', 'Z4', 2018, 70000);
-const auto8 = new Auto('Toyota', 'Supra', 1993, 10000);
-const auto9 = new Auto('Toyota', 'Trueno', 1986, 20000);
-const auto10 = new Auto('Mercedes-Benz', 'GLE', 2023, 250000);
-const auto11 = new Auto('Suzuki', 'Celerio', 2015, 100000);
+function listarAutos(autos) {
+    let cardContainer = document.getElementById('cardContainer');
+    cardContainer.innerHTML = "";
+    if (autos) {
+        autos.forEach(auto => {
+            let articleCard = document.createElement('article');
+            let headerCard = document.createElement('header');
+            let footerCard = document.createElement('footer');
+            let mainCard = document.createElement('img');
+
+            headerCard.textContent = auto.marca + '-' + auto.modelo
+            footerCard.textContent = auto.año
+            mainCard.src = auto.img
+
+            articleCard.appendChild(headerCard);
+            articleCard.appendChild(mainCard);
+            articleCard.appendChild(footerCard);
+            cardContainer.appendChild(articleCard);
+
+            
+            console.log(auto)
+        });
+        
+    } else (
+        cardContainer.innerHTML = "<p style='color:gray'>No se encontraron vehiculos, agregue uno nuevo</p> "
+        )
+        
+        cargarSelect(autos)
+    }
+    
+    function agregarAuto() {
+        let marca = prompt('Ingrese marca')
+    let modelo = prompt('Ingrese modelo')
+    let año = prompt('Ingrese ano')
+    let img = prompt('Ingrese img')
+    let id = listarAutos.length
+    let auto = {
+        marca: marca,
+        modelo: modelo,
+        año: año,
+        img: img,
+        id: id
+    }
+    
+    if (!lista) {
+        let lista = descargarLocalStorage('listaAutos')
+    }
+    lista.push(auto)
 
 
+    listarAutos(lista)
+    actualizarLocalStorage(lista)
 
-arrayAutos.push(auto1);
-arrayAutos.push(auto2);
-arrayAutos.push(auto3);
-arrayAutos.push(auto4);
-arrayAutos.push(auto5);
-arrayAutos.push(auto6);
-arrayAutos.push(auto7);
-arrayAutos.push(auto8);
-arrayAutos.push(auto9);
-arrayAutos.push(auto10);
-arrayAutos.push(auto11);
-
-/* let auto = arrayAutos.filter(auto=> auto.precio <= 50000)
- console.log(auto)
-
-let marca = arrayAutos.filter(marca=> marca.marca == 'Audi')
-console.log(marca) //**/
-
-let marcaAudi = arrayAutos.filter(marca => marca.marca == 'Audi')
-let marcaPorsche = arrayAutos.filter(marca => marca.marca == 'Porsche')
-let marcaBMW = arrayAutos.filter(marca => marca.marca == 'BMW')
-let marcaToyota = arrayAutos.filter(marca => marca.marca == 'Toyota')
-let marcaMercedes = arrayAutos.filter(marca => marca.marca == 'Mercedes-Benz')
-
-let lista = document.getElementById('lista');
-
-arrayAutos.forEach(auto => {
-    let listaAuto = document.createElement("li");
-    listaAuto.textContent = 'El vehiculo marca ' + auto.marca + ' modelo ' + auto.modelo + ' Año ' + auto.año + ' tiene un precio de ' + auto.precio + ' USD ';
-    lista.appendChild(listaAuto);
-})
-function marcaA() {
-    lista.textContent = "";
-    marcaAudi.forEach(auto => {
-        let listaAuto = document.createElement("li");
-        listaAuto.textContent = 'El vehiculo marca ' + auto.marca + ' modelo ' + auto.modelo + ' Año ' + auto.año + ' tiene un precio de ' + auto.precio + ' USD ';
-        lista.appendChild(listaAuto);
-    })
-};
-function marcaP() {
-    lista.textContent = "";
-    marcaPorsche.forEach(auto => {
-        let listaAuto = document.createElement("li");
-        listaAuto.textContent = 'El vehiculo marca ' + auto.marca + ' modelo ' + auto.modelo + ' Año ' + auto.año + ' tiene un precio de ' + auto.precio + ' USD ';
-        lista.appendChild(listaAuto);
-    })
-};
-
-function marcaB() {
-    lista.textContent = "";
-    marcaBMW.forEach(auto => {
-        let listaAuto = document.createElement("li");
-        listaAuto.textContent = 'El vehiculo marca ' + auto.marca + ' modelo ' + auto.modelo + ' Año ' + auto.año + ' tiene un precio de ' + auto.precio + ' USD ';
-        lista.appendChild(listaAuto);
-    })
 }
+function filtrarMarca() {
+    let marca = document.getElementById('selectMarca').value
+    let autoFiltrado = listaAutos.filter(auto => auto.marca == marca);
 
-function marcaT() {
-    lista.textContent = "";
-    marcaToyota.forEach(auto => {
-        let listaAuto = document.createElement("li");
-        listaAuto.textContent = 'El vehiculo marca ' + auto.marca + ' modelo ' + auto.modelo + ' Año ' + auto.año + ' tiene un precio de ' + auto.precio + ' USD ';
-        lista.appendChild(listaAuto);
-    })
+    console.log(autoFiltrado)
+    listarAutos(autoFiltrado)
+
 }
+function cargarSelect(autos) {
+    let selectFiltro = document.getElementById('selectMarca');
+    selectFiltro.innerHTML = ""
+    autos.forEach(auto => {
+        selectFiltro.innerHTML += "<option value='" + auto.marca + "'>" + auto.marca + "</option>"
 
-function marcaM() {
-    lista.textContent = "";
-    marcaMercedes.forEach(auto => {
-        let listaAuto = document.createElement("li");
-        listaAuto.textContent = 'El vehiculo marca ' + auto.marca + ' modelo ' + auto.modelo + ' Año ' + auto.año + ' tiene un precio de ' + auto.precio + ' USD ';
-        lista.appendChild(listaAuto);
-    })
-}
-
-
-/*function monto() {
-    let montoIngresado = prompt('Ingrese el monto que quiere gastar')
-    lista.textContent = "";
-    arrayAutos.map(auto => {
-        let listaAuto = document.createElement("li");
-        listaAuto = arrayAutos.filter(precio => precio.precio <= montoIngresado)
-
-        listaAuto.textContent = 'El vehiculo marca ' + auto.marca + ' modelo ' + auto.modelo + ' Año ' + auto.año + ' tiene un precio de ' + auto.precio + ' USD ';
-
-
-        console.log(listaAuto);
-
-    })
-
-}//*/
-
-function monto() {
-    lista.textContent="";
-    let dinero = prompt('Ingrese monto a gastar ')
-    let listaDinero = arrayAutos.filter(precio => precio.precio <= dinero)
-    listaDinero.forEach(auto => {
-         listaDinero= document.createElement("li")
-        listaDinero.textContent = 'El vehiculo marca ' + auto.marca + ' modelo ' + auto.modelo + ' Año ' + auto.año + ' tiene un precio de ' + auto.precio + ' USD ';
-      console.log(listaDinero)
-      lista.appendChild(listaDinero)
     });
 
+}
 
+function actualizarLocalStorage(listaAutos) {
+    let listaAutosString = JSON.stringify(listaAutos)
+    localStorage.setItem('listaAutos', listaAutosString)
 }
 
 
@@ -134,11 +112,12 @@ function monto() {
 
 
 
+let listaStorage = descargarLocalStorage('listaAutos')
+console.log(listaStorage)
+listarAutos(listaStorage)
 
 
 
 
 
-/*  let saldo = document.getElementById("inSalario")
-      let dinero = saldo.value;
-       console.log(dinero)//**///*
+

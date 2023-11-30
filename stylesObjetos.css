@@ -18,8 +18,25 @@ h1{
     background-color: rgb(11, 65, 65);
     display: flex;
     flex-direction: column;
-
-    
-    
-    
 }
+    
+    
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  .card h3 {
+    margin-top: 0;
+  }
+  #cards{
+    width: 100%;
+    background-color: rgb(131, 115, 115);
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    
+    
+  }

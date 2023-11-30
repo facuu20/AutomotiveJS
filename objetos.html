@@ -16,12 +16,7 @@
 
     </header>
     <main>
-        <form action="">
-            <label for="">Ingrese el monto que quiere gastar</label>
-            <input type="number">
-            <button type="submit">Enviar</button>
-        </form>
-
+        
         <div class="text">
             <h3>Quienes somos?</h3>
             <p>Somos una automotora multi-marca enfocados en vehiculos de alta gama y exoticos.
@@ -34,19 +29,21 @@
             <p>Ponte en contacto con nosotros para llevar a cabo tu proyecto, realizando preparacion de motores y centro
                 de estetica automotriz</p>
         </div>
+       
         <div>
+            <select name="selectMarca" id="selectMarca">
+                
 
-            <button onclick="marcaA()">AUDI</button>
-            <button onclick="marcaP()">PORSCHE</button>
-            <button onclick="marcaM()">MERCEDES-BENZ</button>
-            <button onclick="marcaB()">BMW</button>
-            <button onclick="marcaT()">TOYOTA</button>
-
-
+            </select>
+            <button onclick="filtrarMarca()">FILTRAR</button>
         </div>
-        <ul id="lista">
-
-        </ul>
+        <div id="cardContainer">
+            
+            
+        </div>
+        
+<button onclick="agregarAuto()">Agregar auto</button>
+        
         <button onclick="monto()">Ingrese el monto que dispone</button>
 
     </main>
